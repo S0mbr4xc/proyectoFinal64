@@ -1,12 +1,14 @@
 package ec.edu.ups.ppw.proyectoFinal.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
 public class libro {
 	
 	@Id
+	@GeneratedValue
 	private int codigo;
 	private String nombre;
 	private Double precio;
