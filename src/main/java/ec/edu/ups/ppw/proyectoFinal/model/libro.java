@@ -1,8 +1,12 @@
 package ec.edu.ups.ppw.proyectoFinal.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class libro {
@@ -10,9 +14,14 @@ public class libro {
 	@Id
 	@GeneratedValue
 	private int codigo;
+	
+	
 	private String nombre;
 	private Double precio;
-	private String Categoria;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoria")
+	private categoria categoria;
 	private String autor;
 	private String imagen;
 	private boolean disponibilidad;
@@ -41,11 +50,11 @@ public class libro {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-	public String getCategoria() {
-		return Categoria;
+	public categoria getCategoria() {
+		return categoria;
 	}
-	public void setCategoria(String categoria) {
-		Categoria = categoria;
+	public void setCategoria(categoria categoria) {
+		this.categoria = categoria;
 	}
 	public String getAutor() {
 		return autor;
@@ -58,6 +67,11 @@ public class libro {
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+	@Override
+	public String toString() {
+		return "libro [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", categoria=" + categoria
+				+ ", autor=" + autor + ", imagen=" + imagen + ", disponibilidad=" + disponibilidad + "]";
 	}
 	
 	

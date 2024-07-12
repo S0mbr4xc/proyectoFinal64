@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.proyectoFinal.services;
 
+import java.util.Iterator;
 import java.util.List;
 
 import ec.edu.ups.ppw.proyectoFinal.business.gestionLibros;
@@ -66,6 +67,7 @@ public class libroServices {
 		libro li;
 		try {
 			li = gl.getLibro(nombre);
+			System.out.println("libro: "+li);
 			return li;
 		} catch (Exception e) {
 			return null;
