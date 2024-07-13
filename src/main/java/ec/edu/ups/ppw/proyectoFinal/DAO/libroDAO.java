@@ -39,7 +39,7 @@ public class libroDAO {
 	}
 	
 	public List<libro> getAll(){
-		String jpql = "SELECT c FROM libro c";//Nombre de la entidad asi se haya cambiado el nombre
+		String jpql = "SELECT c FROM libro c ORDER BY codigo";//Nombre de la entidad asi se haya cambiado el nombre
 		Query query = em.createQuery(jpql, libro.class);
 		return query.getResultList();
 	}

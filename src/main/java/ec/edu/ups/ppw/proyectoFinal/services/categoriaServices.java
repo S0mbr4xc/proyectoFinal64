@@ -2,8 +2,8 @@ package ec.edu.ups.ppw.proyectoFinal.services;
 
 import java.util.List;
 
-import ec.edu.ups.ppw.proyectoFinal.business.gestionLibros;
-import ec.edu.ups.ppw.proyectoFinal.model.libro;
+import ec.edu.ups.ppw.proyectoFinal.business.gestionCategorias;
+import ec.edu.ups.ppw.proyectoFinal.model.categoria;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -17,22 +17,22 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/libros")
-public class libroServices {
+@Path("/categorias")
+public class categoriaServices {
 	
 	@Inject
-	private gestionLibros gl;
-	
+	private gestionCategorias gc;
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response create(libro libro) {
+	public Response crear(categoria cat) {
 		try {
-			gl.setLibro(libro);
-			return Response.ok(libro).build();
+			gc.agregarCategoria(cat);
+			return Response.ok(cat).build();
 		} catch (Exception e) {
-			message error = new message(1, e.getMessage());
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+			message error = new message(1, "Ya existe esta categoria");
+			return Response.status(Response.Status.CONFLICT)
 					.entity(error)
 					.build();
 		}
@@ -41,10 +41,10 @@ public class libroServices {
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response update(libro libro) {
+	public Response update(categoria cat) {
 		try {
-			gl.actualiar(libro);
-			return Response.ok(libro).build();
+			gc.actualizar(cat);
+			return Response.ok(cat).build();
 		} catch (Exception e) {
 			message error = new message(100, e.getMessage());
 			return Response.status(Response.Status.NOT_FOUND)
@@ -56,11 +56,11 @@ public class libroServices {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response list(){
-		List<libro> libros = gl.getAll();
-		if(libros.size()>0) {
-			return Response.ok(libros).build();
+		List<categoria> categorias = gc.getAll();
+		if(categorias.size()>0) {
+			return Response.ok(categorias).build();
 		}else {
-			message em = new message(10, "No se registran libros");
+			message em = new message(10, "No se registran categorias");
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(em)
 					.build();
@@ -72,12 +72,12 @@ public class libroServices {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{nombre}")
 	public Response read(@PathParam("nombre") String nombre) {
-		libro li;
+		categoria li;
 		try {
-			li = gl.getLibro(nombre);
+			li = gc.getCategoria(nombre);
 			return Response.ok(li).build();
 		} catch (Exception e) {
-			message em = new message(11, "No se encuentra el libro");
+			message em = new message(11, "No se encuentra la categoria");
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(em)
 					.build();
@@ -88,14 +88,14 @@ public class libroServices {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@QueryParam("nombre") String ci) {
 		try {
-			if(gl.getLibro(ci)==null) {
-				throw new Exception("Libro no encontrado");
+			if(gc.getCategoria(ci)==null) {
+				throw new Exception("Categoria no encontrada");
 			}else {
-				gl.borrar(ci);
+				gc.eliminar(ci);
 				return Response.ok().build();
 			}
 		} catch (Exception e) {
-			message error = new message(101, "Libro no encontrado");
+			message error = new message(101, "Categoria no encontrada");
 			return Response.status(Response.Status.NOT_FOUND)
 					.entity(error)
 					.build();

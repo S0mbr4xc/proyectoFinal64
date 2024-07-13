@@ -20,10 +20,11 @@ public class categoriaDAO {
 	}
 	
 	public void update(categoria cat) {
-		em.persist(cat);
+		em.merge(cat);
 	}
 	
-	public void delete(categoria li) {
+	public void delete(String nombre) {
+		categoria li = this.read(nombre);
 		em.remove(li);
 	}
 	
@@ -38,7 +39,7 @@ public class categoriaDAO {
 	}
 	
 	public List<categoria> getAll(){
-		String jpql = "SELECT c FROM categoria c";//Nombre de la entidad asi se haya cambiado el nombre
+		String jpql = "SELECT c FROM categoria c ORDER BY codigo";//Nombre de la entidad asi se haya cambiado el nombre
 		Query query = em.createQuery(jpql, categoria.class);
 		return query.getResultList();
 	}
