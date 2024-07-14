@@ -2,8 +2,10 @@ package ec.edu.ups.ppw.proyectoFinal.business;
 
 import ec.edu.ups.ppw.proyectoFinal.DAO.categoriaDAO;
 import ec.edu.ups.ppw.proyectoFinal.DAO.libroDAO;
+import ec.edu.ups.ppw.proyectoFinal.DAO.usuarioDAO;
 import ec.edu.ups.ppw.proyectoFinal.model.categoria;
 import ec.edu.ups.ppw.proyectoFinal.model.libro;
+import ec.edu.ups.ppw.proyectoFinal.model.usuario;
 import ec.edu.ups.ppw.proyectoFinal.services.libroServices;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Singleton;
@@ -19,6 +21,9 @@ public class inicio {
 	
 	@Inject
 	private libroDAO gs;
+	
+	@Inject
+	private usuarioDAO gu;
 	
 	@PostConstruct
 	public void init() {
@@ -68,6 +73,18 @@ public class inicio {
 		System.out.println(li.toString());
 		
 		gs.insertLibro(li);
+		
+		usuario us = new usuario();
+		us.setUsuario("loljaxdlololo@gmail.com");
+		us.setRol("admin");
+		
+		gu.insert(us);
+		
+		us = new usuario();
+		us.setUsuario("chablaandres@gmail.com");
+		us.setRol("common");
+		
+		gu.insert(us);
 		
 	}
 }

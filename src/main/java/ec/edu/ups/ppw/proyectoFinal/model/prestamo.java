@@ -4,15 +4,29 @@ import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class prestamo {
 	
 	@Id
 	private int codigo;
-	private Date fechaInicio;
-	private Date fechaFin;
+	@Temporal(TemporalType.DATE)
+    private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
+    private Date fechaFin;
 	private String estado;
+	
+	@ManyToOne
+    @JoinColumn(name = "usuario") // FK hacia Usuario
+    private usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "libro") // FK hacia Libro
+    private libro libro;
 	
 	
 	public Date getFechaInicio() {
