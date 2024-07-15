@@ -20,7 +20,7 @@ public class usuario {
 	private String usuario;
 	private String rol;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "historial")
 	private List<prestamo> historial;
 	
