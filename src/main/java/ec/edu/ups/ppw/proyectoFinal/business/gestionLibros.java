@@ -39,4 +39,16 @@ public class gestionLibros {
 		}
 		return li;
 	}
+	
+	public List<libro> getCategoria(String cat){
+		return dao.getxCategoria(cat);
+	}
+	
+	public List<libro> getAutor(String autor){
+		return dao.getLibrosByAutor(autor);
+	}
+	
+	public List<libro> getDisponibilidad(boolean dispo){
+		return dao.getLibrosByDisponibilidad(dispo);
+	}
 }

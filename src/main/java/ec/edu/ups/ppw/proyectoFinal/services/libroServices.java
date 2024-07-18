@@ -84,6 +84,54 @@ public class libroServices {
 		}
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/categorias/{nombre}")
+	public Response readCategoria(@PathParam("nombre") String nombre) {
+		List<libro> li;
+		try {
+			li = gl.getCategoria(nombre);
+			return Response.ok(li).build();
+		} catch (Exception e) {
+			message em = new message(11, "No se encuentra el libro");
+			return Response.status(Response.Status.NOT_FOUND)
+					.entity(em)
+					.build();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/autor/{nombre}")
+	public Response readAutor(@PathParam("nombre") String nombre) {
+		List<libro> li;
+		try {
+			li = gl.getAutor(nombre);
+			return Response.ok(li).build();
+		} catch (Exception e) {
+			message em = new message(11, "No se encuentra el libro");
+			return Response.status(Response.Status.NOT_FOUND)
+					.entity(em)
+					.build();
+		}
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/disponibilidad/{nombre}")
+	public Response readDisponibilidad(@PathParam("nombre") Boolean nombre) {
+		List<libro> li;
+		try {
+			li = gl.getDisponibilidad(nombre);
+			return Response.ok(li).build();
+		} catch (Exception e) {
+			message em = new message(11, "No se encuentra el libro");
+			return Response.status(Response.Status.NOT_FOUND)
+					.entity(em)
+					.build();
+		}
+	}
+	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response delete(@QueryParam("nombre") String ci) {

@@ -43,4 +43,25 @@ public class libroDAO {
 		Query query = em.createQuery(jpql, libro.class);
 		return query.getResultList();
 	}
+	
+	public List<libro> getxCategoria(String cat){
+		String jpql = "SELECT l FROM libro l JOIN l.categoria c WHERE c.nombre = :categoriaNombre ORDER BY l.codigo";
+	    TypedQuery<libro> query = em.createQuery(jpql, libro.class);
+	    query.setParameter("categoriaNombre", cat);
+	    return query.getResultList();
+	}
+	
+	public List<libro> getLibrosByAutor(String autor) {
+	    String jpql = "SELECT l FROM libro l WHERE l.autor = :autor ORDER BY l.codigo";
+	    TypedQuery<libro> query = em.createQuery(jpql, libro.class);
+	    query.setParameter("autor", autor);
+	    return query.getResultList();
+	}
+	
+	public List<libro> getLibrosByDisponibilidad(boolean disponibilidad) {
+	    String jpql = "SELECT l FROM libro l WHERE l.disponibilidad = :disponibilidad ORDER BY l.codigo";
+	    TypedQuery<libro> query = em.createQuery(jpql, libro.class);
+	    query.setParameter("disponibilidad", disponibilidad);
+	    return query.getResultList();
+	}
 }

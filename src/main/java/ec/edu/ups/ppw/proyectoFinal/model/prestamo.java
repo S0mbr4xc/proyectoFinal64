@@ -3,8 +3,6 @@ package ec.edu.ups.ppw.proyectoFinal.model;
 import java.time.LocalDate;
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
