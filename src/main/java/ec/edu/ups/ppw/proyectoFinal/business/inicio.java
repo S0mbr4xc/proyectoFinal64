@@ -1,10 +1,16 @@
 package ec.edu.ups.ppw.proyectoFinal.business;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import ec.edu.ups.ppw.proyectoFinal.DAO.categoriaDAO;
 import ec.edu.ups.ppw.proyectoFinal.DAO.libroDAO;
+import ec.edu.ups.ppw.proyectoFinal.DAO.prestamoDAO;
 import ec.edu.ups.ppw.proyectoFinal.DAO.usuarioDAO;
 import ec.edu.ups.ppw.proyectoFinal.model.categoria;
 import ec.edu.ups.ppw.proyectoFinal.model.libro;
+import ec.edu.ups.ppw.proyectoFinal.model.prestamo;
 import ec.edu.ups.ppw.proyectoFinal.model.usuario;
 import ec.edu.ups.ppw.proyectoFinal.services.libroServices;
 import jakarta.annotation.PostConstruct;
@@ -25,6 +31,10 @@ public class inicio {
 	@Inject
 	private usuarioDAO gu;
 	
+	@Inject
+	private prestamoDAO gp;
+	
+	@SuppressWarnings("deprecation")
 	@PostConstruct
 	public void init() {
 		System.out.println("----------------INICIANDO----------------");
@@ -86,5 +96,18 @@ public class inicio {
 		
 		gu.insert(us);
 		
+		prestamo pre = new prestamo();
+		
+		pre.setFechaInicio(LocalDate.now());
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate fechaFin = LocalDate.parse("2024-07-17", formatter);
+		
+		pre.setFechaFin(fechaFin);
+		pre.setLibro(li);
+		pre.setUsuario(us);
+		pre.setEstado("Reservado");
+		
+		gp.insert(pre);
 	}
 }

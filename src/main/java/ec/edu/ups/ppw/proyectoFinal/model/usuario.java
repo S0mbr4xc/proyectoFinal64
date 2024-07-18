@@ -1,8 +1,12 @@
 package ec.edu.ups.ppw.proyectoFinal.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -17,11 +21,12 @@ public class usuario {
 	@GeneratedValue
 	private int codigo;
 	
+	@Column(unique = true)
 	private String usuario;
 	private String rol;
 	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JoinColumn(name = "historial")
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+	@JsonManagedReference
 	private List<prestamo> historial;
 	
 	public List<prestamo> getHistorial() {
@@ -29,7 +34,7 @@ public class usuario {
 	}
 	public void setHistorial(List<prestamo> historial) {
 		this.historial = historial;
-	}
+	}*/
 	public int getCodigo() {
 		return codigo;
 	}
@@ -50,11 +55,18 @@ public class usuario {
 	}
 	@Override
 	public String toString() {
-		return "usuario [codigo=" + codigo + ", usuario=" + usuario + ", rol=" + rol + ", historial=" + historial + "]";
+		return "usuario [codigo=" + codigo + ", usuario=" + usuario + ", rol=" + rol + ", historial=" + "]";
 	}
 	public String getRol() {
 		return rol;
 	}
+	
+	/*public void addPrestamo(prestamo pre) {
+		if(historial==null) {
+			historial = new ArrayList<prestamo>();
+		}
+		historial.add(pre);
+	}*/
 	
 	
 }

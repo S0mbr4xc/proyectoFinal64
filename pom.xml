@@ -130,7 +130,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            
+            
+			
             <!--Define the JUnit5 bom. WildFly BOM still contains JUnit4, so we have to declare a version here -->
             <dependency>
                 <groupId>org.junit</groupId>

@@ -25,7 +25,7 @@ public class usuarioDAO {
 	}
 	
 	public usuario read(String usuario) {
-		TypedQuery<usuario> query = em.createQuery("SELECT l FROM libro l WHERE l.usuario = :usuario", usuario.class);
+		TypedQuery<usuario> query = em.createQuery("SELECT l FROM usuario l WHERE l.usuario = :usuario", usuario.class);
         query.setParameter("usuario", usuario);
         try {
             return query.getSingleResult();

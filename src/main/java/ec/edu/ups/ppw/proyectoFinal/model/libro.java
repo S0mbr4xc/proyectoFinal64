@@ -1,5 +1,6 @@
 package ec.edu.ups.ppw.proyectoFinal.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+
 
 @Entity
 public class libro {
@@ -29,8 +31,9 @@ public class libro {
 	private String imagen;
 	private boolean disponibilidad;
 	
-	@OneToMany(mappedBy = "libro", fetch = FetchType.EAGER)
-    private List<prestamo> prestamos;
+	/*@OneToMany(mappedBy = "libro", fetch = FetchType.EAGER)
+	@JsonManagedReference
+    private List<prestamo> prestamos;*/
 	
 	public int getCodigo() {
 		return codigo;
@@ -74,19 +77,24 @@ public class libro {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	public List<prestamo> getPrestamos() {
+	/*public List<prestamo> getPrestamos() {
 		return prestamos;
 	}
 	public void setPrestamos(List<prestamo> prestamos) {
 		this.prestamos = prestamos;
-	}
+	}*/
 	@Override
 	public String toString() {
 		return "libro [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", categoria=" + categoria
 				+ ", autor=" + autor + ", imagen=" + imagen + ", disponibilidad=" + disponibilidad + ", prestamos="
-				+ prestamos + "]";
+				+ "]";
 	}
 	
-	
+	/*public void addPrestamo(prestamo pre) {
+		if(prestamos==null) {
+			prestamos = new ArrayList<prestamo>();
+		}
+		prestamos.add(pre);
+	}*/
 	
 }
