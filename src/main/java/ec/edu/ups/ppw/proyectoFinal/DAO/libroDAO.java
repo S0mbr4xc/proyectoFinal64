@@ -2,9 +2,9 @@ package ec.edu.ups.ppw.proyectoFinal.DAO;
 
 import java.util.List;
 
+import ec.edu.ups.ppw.proyectoFinal.model.categoria;
 import ec.edu.ups.ppw.proyectoFinal.model.libro;
 import jakarta.ejb.Stateless;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -17,11 +17,38 @@ public class libroDAO {
 	private EntityManager em;
 	
 	public void insertLibro(libro li) {
-		em.persist(li);
-	}
+		TypedQuery<categoria> query = em.createQuery("SELECT c FROM categoria c WHERE c.nombre = :nombre", categoria.class);
+        query.setParameter("nombre", li.getCategoriaNombre());
+        categoria managedCategoria;
+        try {
+            managedCategoria = query.getSingleResult();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("La categoría con el nombre " + li.getCategoriaNombre() + " no existe.");
+        }
+
+        // Asignar la categoría gestionada al libro
+        li.setCategoria(managedCategoria);
+
+        // Persistir el libro
+        em.persist(li);
+    }
 	
 	public void update(libro li) {
-		em.merge(li);
+
+        // 1. Buscar la categoría en la base de datos usando el nombre de la categoría recibido
+        TypedQuery<categoria> query = em.createQuery("SELECT c FROM categoria c WHERE c.nombre = :nombre", categoria.class);
+        query.setParameter("nombre", li.getCategoriaNombre());
+        categoria managedCategoria;
+        try {
+            managedCategoria = query.getSingleResult();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("La categoría con el nombre " + li.getCategoriaNombre() + " no existe.");
+        }
+        
+        li.setCategoria(managedCategoria);
+
+        // 3. Actualizar el libro
+        em.merge(li);
 	}
 	
 	public void delete(libro li) {

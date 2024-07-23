@@ -65,7 +65,6 @@ public class libroServices {
 					.entity(em)
 					.build();
 		}
-		
 	}
 	
 	@GET
