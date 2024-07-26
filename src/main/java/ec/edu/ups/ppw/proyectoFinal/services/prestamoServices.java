@@ -1,5 +1,7 @@
 package ec.edu.ups.ppw.proyectoFinal.services;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import ec.edu.ups.ppw.proyectoFinal.business.gestionPrestamos;
@@ -12,6 +14,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -51,7 +54,7 @@ public class prestamoServices {
 	}
 	
 	@GET
-	@Path("{usuario}")
+	@Path("/usuario/{usuario}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listUsuario(@PathParam("usuario") String usuario){
 		List<prestamo> prestamos = gp.getUsuario(usuario);
@@ -63,5 +66,37 @@ public class prestamoServices {
 					.entity(em)
 					.build();
 		}
+	}
+	
+	@GET
+    @Path("/historial/historial-prestamos-pdf")
+    @Produces("application/pdf")
+    public Response getHistorialPrestamosReportePDF() {
+        try {
+            byte[] pdfData = gp.generarReporteHistorialPrestamosPDF();
+            return Response.ok(pdfData)
+                           .header("Content-Disposition", "attachment; filename=historial_prestamos.pdf")
+                           .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
+    }
+	
+	@GET
+	@Path("/reservas-entre-fechas-pdf")
+	@Produces("application/pdf")
+	public Response getReporteReservasEntreFechasPDF(@QueryParam("fechaInicio") String fechaInicioStr, @QueryParam("fechaFin") String fechaFinStr) {
+	    try {
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        LocalDate fechaInicio = LocalDate.parse(fechaInicioStr, formatter);
+	        LocalDate fechaFin = LocalDate.parse(fechaFinStr, formatter);
+
+	        byte[] pdfData = gp.generarReporteReservasEntreFechasPDF(fechaInicio, fechaFin);
+	        return Response.ok(pdfData)
+	                       .header("Content-Disposition", "attachment; filename=reservas_entre_fechas.pdf")
+	                       .build();
+	    } catch (Exception e) {
+	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+	    }
 	}
 }
