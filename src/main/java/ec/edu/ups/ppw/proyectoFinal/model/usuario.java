@@ -21,7 +21,7 @@ public class usuario {
 	
 	@Column(unique = true)
 	private String usuario;
-	private String rol;
+	private String role;
 	
 	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
 	@JsonManagedReference
@@ -46,17 +46,17 @@ public class usuario {
 		this.usuario = usuario;
 	}
 	public String isRol() {
-		return rol;
+		return role;
 	}
 	public void setRol(String rol) {
-		this.rol = rol;
+		this.role = rol;
 	}
 	@Override
 	public String toString() {
-		return "usuario [codigo=" + codigo + ", usuario=" + usuario + ", rol=" + rol + ", historial=" + "]";
+		return "usuario [codigo=" + codigo + ", usuario=" + usuario + ", rol=" + role + ", historial=" + "]";
 	}
 	public String getRol() {
-		return rol;
+		return role;
 	}
 	
 	/*public void addPrestamo(prestamo pre) {
