@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Devolución de Libro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=PT+Sans:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+    <!-- Body -->
+    <h:form>
+        <div class="return-container">
+            <div class="image-container">
+                <h:graphicImage name="images/escritor.webp" alt="#{libroController.libroSeleccionado.nombre}" />
+                <div class="form-group">
+                    <label>Autor</label>
+                    <p>#{libroController.libroSeleccionado.autor}</p>
+                </div>
+            </div>
+            <div class="form-container">
+                <h2>DEVOLUCIÓN</h2>
+                <div class="form-group">
+                    <h:outputLabel for="name" value="Nombre del Usuario" />
+                    <h:inputText id="name" value="#{libroController.nombreUsuario}" required="true" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="return-date" value="Fecha de Devolución" />
+                    <h:inputText id="return-date" value="#{libroController.fechaDevolucion}" required="true" />
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="comments" value="Comentarios" />
+                    <h:inputTextarea id="comments" value="#{libroController.comentarios}" rows="4" />
+                </div>
+                <h:commandButton value="Devolver" action="#{libroController.devolverLibro}" styleClass="return-btn"/>
+                <h:commandButton value="Cancelar" action="catalogo.xhtml" immediate="true" styleClass="cancelar-btn"/>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>
