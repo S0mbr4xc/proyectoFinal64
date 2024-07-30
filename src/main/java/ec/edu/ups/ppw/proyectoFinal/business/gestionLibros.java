@@ -51,4 +51,18 @@ public class gestionLibros {
 	public List<libro> getDisponibilidad(boolean dispo){
 		return dao.getLibrosByDisponibilidad(dispo);
 	}
+	
+	public void reducirStock(libro libro) throws Exception {
+        if (libro.getStock() > 0) {
+            libro.setStock(libro.getStock() - 1);
+            dao.update(libro);
+        } else {
+            throw new Exception("No hay suficiente stock para este libro");
+        }
+    }
+    
+    public void aumentarStock(libro libro) {
+        libro.setStock(libro.getStock() + 1);
+        dao.update(libro);
+    }
 }

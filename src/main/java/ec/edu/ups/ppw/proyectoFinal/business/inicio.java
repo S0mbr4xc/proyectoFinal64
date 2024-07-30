@@ -52,15 +52,15 @@ public class inicio {
 
 		
 		libro li = new libro();
-		
+
 		li.setNombre("50 Sombras de Diego");
 		li.setPrecio(15.0);
 		li.setCategoriaNombre("Romance");
 		li.setImagen("https://firebasestorage.googleapis.com/v0/b/project-biblioteca.appspot.com/o/images%2F50%20Sombras.jpg?alt=media&token=8494f548-bfe7-40c5-99e5-0541bbb24a42");
 		li.setDisponibilidad(false);
 		li.setAutor("Andres Chabla");
+		li.setStock(10); // Stock inicial
 		System.out.println(li.toString());
-
 		gs.insertLibro(li);
 
 		li = new libro();
@@ -71,9 +71,8 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://firebasestorage.googleapis.com/v0/b/project-biblioteca.appspot.com/o/images%2Flibro4.jpg?alt=media&token=19ba240c-afa4-48ca-af87-048db7db4c51");
 		li.setPrecio(65.00);
-
+		li.setStock(5); // Stock inicial
 		System.out.println(li.toString());
-
 		gs.insertLibro(li);
 
 		li = new libro();
@@ -83,6 +82,7 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9786073130288.webp");
 		li.setPrecio(30.00);
+		li.setStock(7); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -93,6 +93,7 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/e3/2b/e32bce1befb83115aaa523e239a42eab.jpg");
 		li.setPrecio(45.00);
+		li.setStock(12); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -103,6 +104,7 @@ public class inicio {
 		li.setDisponibilidad(false);
 		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9786287574045.webp");
 		li.setPrecio(50.00);
+		li.setStock(3); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -113,6 +115,7 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/17/00/17004a1ca6d14e56e5d295978d80d158.jpg");
 		li.setPrecio(40.00);
+		li.setStock(8); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -123,6 +126,7 @@ public class inicio {
 		li.setDisponibilidad(false);
 		li.setImagen("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ26ofEPe7Lh6JHRwInp41WbawkS0GOOnw0cA&s");
 		li.setPrecio(35.00);
+		li.setStock(4); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -133,6 +137,7 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://www.antena3.com/newa3flash/modulos_blancos/uploader/uploads/cien%20a%C3%B1os%20de%20soledad.jpg");
 		li.setPrecio(25.00);
+		li.setStock(9); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -143,6 +148,7 @@ public class inicio {
 		li.setDisponibilidad(true);
 		li.setImagen("https://images.cdn3.buscalibre.com/fit-in/360x360/49/66/49661480fa1f78034b80bae7ed020841.jpg");
 		li.setPrecio(60.00);
+		li.setStock(6); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -153,6 +159,7 @@ public class inicio {
 		li.setDisponibilidad(false);
 		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9788432212796.webp");
 		li.setPrecio(20.00);
+		li.setStock(10); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
 
@@ -163,8 +170,10 @@ public class inicio {
 		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/26/ec/26ec71a5396959c17c45d21cb4a815b3.jpg");
 		li.setDisponibilidad(false);
 		li.setCategoriaNombre("Romance");
+		li.setStock(8); // Stock inicial
 		System.out.println(li.toString());
 		gs.insertLibro(li);
+
         
 		usuario us = new usuario();
 		us.setUsuario("loljaxdlololo@gmail.com");

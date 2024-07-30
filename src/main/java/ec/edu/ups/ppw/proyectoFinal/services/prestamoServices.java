@@ -35,23 +35,16 @@ public class prestamoServices {
 		try {
             // Reducción de stock cuando se realiza el préstamo
             libro libroPrestado = prestamo.getLibro();
-            if(libroPrestado.getStock() > 0) {
-                libroPrestado.setStock(libroPrestado.getStock() - 1);
-                gl.updateLibro(libroPrestado); // Asegúrate de tener este método en gestionLibros
-                gp.crear(prestamo);
-                return Response.ok(prestamo).build();
-            } else {
-                return Response.status(Response.Status.BAD_REQUEST)
-                        .entity("No hay suficiente stock para este libro")
-                        .build();
-            }
+            System.out.println(libroPrestado);
+            gl.reducirStock(libroPrestado); // Reduzco el stock del libro
+            gp.crear(prestamo);
+            return Response.ok(prestamo).build();
         } catch (Exception e) {
             message error = new message(1, e.getMessage());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(error)
                     .build();
         }
-    }
 	}
 	
 	@GET
