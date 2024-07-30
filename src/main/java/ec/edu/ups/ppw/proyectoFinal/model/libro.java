@@ -33,13 +33,10 @@ public class libro {
 	private String autor;
 	private String imagen;
 	private boolean disponibilidad;
+	private int stock;
 	
 	@Transient
     private String categoriaNombre;
-	
-	/*@OneToMany(mappedBy = "libro", fetch = FetchType.EAGER)
-	@JsonManagedReference
-    private List<prestamo> prestamos;*/
 	
 	public String getCategoriaNombre() {
 		return categoriaNombre;
@@ -89,24 +86,17 @@ public class libro {
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
 	}
-	/*public List<prestamo> getPrestamos() {
-		return prestamos;
+	
+	public int getStock() {
+		return stock;
 	}
-	public void setPrestamos(List<prestamo> prestamos) {
-		this.prestamos = prestamos;
-	}*/
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	@Override
 	public String toString() {
 		return "libro [codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", categoria=" + categoria
-				+ ", autor=" + autor + ", imagen=" + imagen + ", disponibilidad=" + disponibilidad + ", prestamos="
-				+ "]";
+				+ ", autor=" + autor + ", imagen=" + imagen + ", disponibilidad=" + disponibilidad + ", stock=" + stock
+				+ ", categoriaNombre=" + categoriaNombre + "]";
 	}
-	
-	/*public void addPrestamo(prestamo pre) {
-		if(prestamos==null) {
-			prestamos = new ArrayList<prestamo>();
-		}
-		prestamos.add(pre);
-	}*/
-	
 }

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import ec.edu.ups.ppw.proyectoFinal.business.gestionLibros;
 import ec.edu.ups.ppw.proyectoFinal.business.gestionPrestamos;
 import ec.edu.ups.ppw.proyectoFinal.model.libro;
 import ec.edu.ups.ppw.proyectoFinal.model.prestamo;
@@ -24,19 +25,33 @@ public class prestamoServices {
 	@Inject
 	private gestionPrestamos gp;
 	
+	@Inject
+	private gestionLibros gl;
+	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(prestamo prestamo) {
 		try {
-			gp.crear(prestamo);
-			return Response.ok(prestamo).build();
-		} catch (Exception e) {
-			message error = new message(1, e.getMessage());
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-					.entity(error)
-					.build();
-		}
+            // Reducción de stock cuando se realiza el préstamo
+            libro libroPrestado = prestamo.getLibro();
+            if(libroPrestado.getStock() > 0) {
+                libroPrestado.setStock(libroPrestado.getStock() - 1);
+                gl.updateLibro(libroPrestado); // Asegúrate de tener este método en gestionLibros
+                gp.crear(prestamo);
+                return Response.ok(prestamo).build();
+            } else {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("No hay suficiente stock para este libro")
+                        .build();
+            }
+        } catch (Exception e) {
+            message error = new message(1, e.getMessage());
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(error)
+                    .build();
+        }
+    }
 	}
 	
 	@GET

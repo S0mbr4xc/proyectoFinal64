@@ -59,12 +59,5 @@ public class usuario {
 		return role;
 	}
 	
-	/*public void addPrestamo(prestamo pre) {
-		if(historial==null) {
-			historial = new ArrayList<prestamo>();
-		}
-		historial.add(pre);
-	}*/
-	
 	
 }
