@@ -33,18 +33,15 @@ public class prestamoServices {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response create(prestamo prestamo) {
 		try {
-            // Reducción de stock cuando se realiza el préstamo
-            libro libroPrestado = prestamo.getLibro();
-            System.out.println(libroPrestado);
-            gl.reducirStock(libroPrestado); // Reduzco el stock del libro
-            gp.crear(prestamo);
-            return Response.ok(prestamo).build();
-        } catch (Exception e) {
-            message error = new message(1, e.getMessage());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                    .entity(error)
-                    .build();
-        }
+			System.out.println(prestamo.toString());
+			gp.crear(prestamo);
+			return Response.ok(prestamo).build();
+		} catch (Exception e) {
+			message error = new message(1, e.getMessage());
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+					.entity(error)
+					.build();
+		}
 	}
 	
 	@GET

@@ -20,7 +20,7 @@ public class prestamoDAO {
 	private EntityManager em;
 	
 	public void insert(prestamo pre) {
-		TypedQuery<usuario> userQuery = em.createQuery("SELECT u FROM usuario u WHERE u.usuario = :email", usuario.class);
+        TypedQuery<usuario> userQuery = em.createQuery("SELECT u FROM usuario u WHERE u.usuario = :email", usuario.class);
         userQuery.setParameter("email", pre.getUsuarioEmail());
         usuario managedUsuario;
         try {
@@ -29,7 +29,6 @@ public class prestamoDAO {
             throw new IllegalArgumentException("El usuario con el email " + pre.getUsuarioEmail() + " no existe.");
         }
 
-        // 2. Buscar el libro en la base de datos usando el nombre del libro recibido
         TypedQuery<libro> bookQuery = em.createQuery("SELECT l FROM libro l WHERE l.nombre = :nombre", libro.class);
         bookQuery.setParameter("nombre", pre.getLibroNombre());
         libro managedLibro;
@@ -39,17 +38,28 @@ public class prestamoDAO {
             throw new IllegalArgumentException("El libro con el nombre " + pre.getLibroNombre() + " no existe.");
         }
 
-        // 3. Asignar el usuario y el libro gestionados al prestamo
+        // Verificar stock antes de realizar el préstamo
+        if (managedLibro.getStock() > 0) {
+            managedLibro.setStock(managedLibro.getStock() - 1);
+            em.merge(managedLibro);
+        } else {
+            throw new IllegalArgumentException("No hay suficiente stock para el libro: " + managedLibro.getNombre());
+        }
+
         pre.setUsuario(managedUsuario);
         pre.setLibro(managedLibro);
 
-        // 4. Persistir el prestamo
-        em.persist(pre);	
-	}
+        em.persist(pre);
+    }
 	
-	public void update(prestamo us) {
-		em.merge(us);
-	}
+	public void update(prestamo pre) {
+        if (pre.getEstado().equals("Devuelto")) {
+            libro libro = pre.getLibro();
+            libro.setStock(libro.getStock() + 1);
+            em.merge(libro);
+        }
+        em.merge(pre);
+    }
 	
 	public prestamo read(String codigo) {
 		return em.find(prestamo.class, codigo);

@@ -80,7 +80,10 @@ public class inicio {
 		li.setNombre("Como Agua Para Chocolate");
 		li.setCategoriaNombre("Drama");
 		li.setDisponibilidad(true);
-		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9786073130288.webp");
+		li.setImagen("https://firebasestorage.googleapis.com/"
+				+ "v0/b/project-biblioteca.appspot.com/o/"
+				+ "images%2FComo%20agua%20para%20chocolate.webp?alt"
+				+ "=media&token=ff32a52e-6fe4-4e1a-a998-4a56e7d0b38a");
 		li.setPrecio(30.00);
 		li.setStock(7); // Stock inicial
 		System.out.println(li.toString());
@@ -91,7 +94,9 @@ public class inicio {
 		li.setNombre("Fundación");
 		li.setCategoriaNombre("Ciencia Ficcion");
 		li.setDisponibilidad(true);
-		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/e3/2b/e32bce1befb83115aaa523e239a42eab.jpg");
+		li.setImagen("https://firebasestorage.googleapis.com/v0/b/"
+				+ "project-biblioteca.appspot.com/o/images%2Ffundacion"
+				+ ".webp?alt=media&token=50ddcc7f-e4bd-4d10-8f5d-17e34fd5a10a");
 		li.setPrecio(45.00);
 		li.setStock(12); // Stock inicial
 		System.out.println(li.toString());
@@ -102,7 +107,10 @@ public class inicio {
 		li.setNombre("El Señor de los Anillos");
 		li.setCategoriaNombre("Fantasia");
 		li.setDisponibilidad(false);
-		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9786287574045.webp");
+		li.setImagen("https://firebasestorage.googleapis.com/v0/b/"
+				+ "project-biblioteca.appspot.com/o/images%2FSr%"
+				+ "20Anillos.webp?alt=media&token=a6ef1522-eca7-4858"
+				+ "-afa1-f67913abd2e2");
 		li.setPrecio(50.00);
 		li.setStock(3); // Stock inicial
 		System.out.println(li.toString());
@@ -113,7 +121,9 @@ public class inicio {
 		li.setNombre("Steve Jobs");
 		li.setCategoriaNombre("Biografia");
 		li.setDisponibilidad(true);
-		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/17/00/17004a1ca6d14e56e5d295978d80d158.jpg");
+		li.setImagen("https://firebasestorage.googleapis.com/v0/b/"
+				+ "project-biblioteca.appspot.com/o/images%2FSteve"
+				+ ".webp?alt=media&token=e43ba160-b997-4c7e-a84d-4aa0816de951");
 		li.setPrecio(40.00);
 		li.setStock(8); // Stock inicial
 		System.out.println(li.toString());
@@ -124,7 +134,10 @@ public class inicio {
 		li.setNombre("Asesinato en el Orient Express");
 		li.setCategoriaNombre("Misterio");
 		li.setDisponibilidad(false);
-		li.setImagen("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ26ofEPe7Lh6JHRwInp41WbawkS0GOOnw0cA&s");
+		li.setImagen("https://firebasestorage.googleapis.com/"
+				+ "v0/b/project-biblioteca.appspot.com/o/"
+				+ "images%2FOrient.jpeg?alt=media&token="
+				+ "e3a3325b-e72e-407a-bb09-4ae2a2e5b8af");
 		li.setPrecio(35.00);
 		li.setStock(4); // Stock inicial
 		System.out.println(li.toString());
@@ -135,7 +148,10 @@ public class inicio {
 		li.setNombre("Cien Años de Soledad");
 		li.setCategoriaNombre("Aventura");
 		li.setDisponibilidad(true);
-		li.setImagen("https://www.antena3.com/newa3flash/modulos_blancos/uploader/uploads/cien%20a%C3%B1os%20de%20soledad.jpg");
+		li.setImagen("https://firebasestorage.googleapis.com"
+				+ "/v0/b/project-biblioteca.appspot.com/o/"
+				+ "images%2Fcien%20a%C3%B1os%20de%20soledad."
+				+ "jpg?alt=media&token=6acbff07-5c01-4f13-b4ac-ff1ac26a177b");
 		li.setPrecio(25.00);
 		li.setStock(9); // Stock inicial
 		System.out.println(li.toString());
@@ -146,7 +162,8 @@ public class inicio {
 		li.setNombre("El Resplandor");
 		li.setCategoriaNombre("Terror");
 		li.setDisponibilidad(true);
-		li.setImagen("https://images.cdn3.buscalibre.com/fit-in/360x360/49/66/49661480fa1f78034b80bae7ed020841.jpg");
+		li.setImagen("https://firebasestorage.googleapis.com/v0/b/project-biblioteca.appspot.com/"
+				+ "o/images%2Fresplandor.webp?alt=media&token=e684ca76-b369-4522-9f17-cc2580a94484");
 		li.setPrecio(60.00);
 		li.setStock(6); // Stock inicial
 		System.out.println(li.toString());
@@ -157,7 +174,10 @@ public class inicio {
 		li.setNombre("Veinte Poemas de Amor y una Canción Desesperada");
 		li.setCategoriaNombre("Poesia");
 		li.setDisponibilidad(false);
-		li.setImagen("https://www.mrbooks.com/mrbooks/portadas/9788432212796.webp");
+		li.setImagen("https://firebasestorage.googleapis.com/"
+				+ "v0/b/project-biblioteca.appspot.com/o/"
+				+ "images%2Fveinte.webp?alt=media&token=1ca62524"
+				+ "-d77c-4497-92ed-689156a68498");
 		li.setPrecio(20.00);
 		li.setStock(10); // Stock inicial
 		System.out.println(li.toString());
@@ -167,7 +187,9 @@ public class inicio {
 		li.setAutor("Julio Cortazar");
 		li.setNombre("Rayuela");
 		li.setPrecio(15.00);
-		li.setImagen("https://images.cdn2.buscalibre.com/fit-in/360x360/26/ec/26ec71a5396959c17c45d21cb4a815b3.jpg");
+		li.setImagen("https://firebasestorage.googleapis.com/"
+				+ "v0/b/project-biblioteca.appspot.com/o/"
+				+ "images%2FRayuela.webp?alt=media&token=e5090523-f39f-4351-ae8d-7b2f42880ab5");
 		li.setDisponibilidad(false);
 		li.setCategoriaNombre("Romance");
 		li.setStock(8); // Stock inicial
@@ -183,7 +205,7 @@ public class inicio {
 		
 		us = new usuario();
 		us.setUsuario("chablaandres@gmail.com");
-		us.setRol("common");
+		us.setRol("admin");
 		
 		gu.insert(us);
 		
